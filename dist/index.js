@@ -89,7 +89,7 @@ exports.TablDataFilterSortType = void 0;
     TablDataFilterSortType[TablDataFilterSortType["none"] = 2] = "none";
 })(exports.TablDataFilterSortType || (exports.TablDataFilterSortType = {}));
 var TableData = function (_a) {
-    var listObjectsData = _a.listObjectsData, listLegend = _a.listLegend, _b = _a.lang, lang = _b === void 0 ? 'en-EN' : _b, _c = _a.color, color = _c === void 0 ? 'grey' : _c, textColor = _a.textColor;
+    var listObjectsData = _a.listObjectsData, listLegend = _a.listLegend, _b = _a.lang, lang = _b === void 0 ? 'en-EN' : _b, _c = _a.color, color = _c === void 0 ? 'grey' : _c, textColor = _a.textColor, className = _a.className;
     var i18n = new Map(Object.entries(jsonTranslate.i18n));
     var translate = i18n.get(lang) ? new Map(Object.entries(i18n.get(lang))) : new Map(Object.entries(i18n.get('fr-FR')));
     var defaultEntrieCountValue = 10;
@@ -120,8 +120,6 @@ var TableData = function (_a) {
                     var valueB = typeof (b[objectEntryLabel]) === 'string' ? b[objectEntryLabel].toLowerCase().replace(' ', '') : b[objectEntryLabel];
                     if (valueA < valueB)
                         return -1;
-                    if (valueB > valueA)
-                        return 1;
                     return 0;
                 });
                 return filterTabSortDesc;
@@ -132,13 +130,9 @@ var TableData = function (_a) {
                     var valueB = typeof (b[objectEntryLabel]) === 'string' ? b[objectEntryLabel].toLowerCase().replace(' ', '') : b[objectEntryLabel];
                     if (valueA > valueB)
                         return -1;
-                    if (valueB < valueA)
-                        return 1;
                     return 0;
                 });
                 return filterTabSortAsc;
-            default:
-                return [];
         }
     };
     var filterTableSearch = function (value) {
@@ -168,7 +162,15 @@ var TableData = function (_a) {
             });
             resultTabSearch = resultTabSearch.concat(wordResultTabSearch);
         });
-        return keywords.length > 0 && resultTabSearch.length > 0 ? resultTabSearch : listObjectsData;
+        if (keywords.length > 0 && resultTabSearch.length > 0) {
+            return resultTabSearch;
+        }
+        else if (keywords.length > 0 && keywords[0] === '') {
+            return listObjectsData;
+        }
+        else {
+            return [];
+        }
     };
     var handleChangeSearch = function (e) {
         var newFilterTab = filterTableSearch(e.currentTarget.value);
@@ -188,11 +190,11 @@ var TableData = function (_a) {
                                     index: index,
                                     filter: (arraySortSelected === null || arraySortSelected === void 0 ? void 0 : arraySortSelected.filter) === exports.TablDataFilterSortType.asc ?
                                         exports.TablDataFilterSortType.desc : exports.TablDataFilterSortType.asc
-                                }); } }, { children: item.label })), jsxRuntime.jsxs("div", __assign({ className: 'table-data__table__header__legend__controls' }, { children: [jsxRuntime.jsx("i", __assign({ "data-testid": 'asc-controller', className: "".concat((arraySortSelected === null || arraySortSelected === void 0 ? void 0 : arraySortSelected.index) === index && arraySortSelected.filter === exports.TablDataFilterSortType.asc ? 'active' : '') }, { children: jsxRuntime.jsx(reactFontawesome.FontAwesomeIcon, { onClick: function () { return handleChangeSort({ index: index, filter: exports.TablDataFilterSortType.asc }); }, icon: freeSolidSvgIcons.faCaretUp, fontSize: '10px' }) })), jsxRuntime.jsx("i", __assign({ "data-testid": 'desc-controller', className: "".concat((arraySortSelected === null || arraySortSelected === void 0 ? void 0 : arraySortSelected.index) === index && arraySortSelected.filter === exports.TablDataFilterSortType.desc ? 'active' : '') }, { children: jsxRuntime.jsx(reactFontawesome.FontAwesomeIcon, { onClick: function () { return handleChangeSort({ index: index, filter: exports.TablDataFilterSortType.desc }); }, icon: freeSolidSvgIcons.faCaretDown, fontSize: '10px' }) }))] }))] })) }, item.entry)); }) }) })));
+                                }); } }, { children: item.label })), jsxRuntime.jsxs("div", __assign({ className: 'table-data__table__header__legend__controls' }, { children: [jsxRuntime.jsx("i", __assign({ className: "".concat((arraySortSelected === null || arraySortSelected === void 0 ? void 0 : arraySortSelected.index) === index && arraySortSelected.filter === exports.TablDataFilterSortType.asc ? 'active' : '') }, { children: jsxRuntime.jsx(reactFontawesome.FontAwesomeIcon, { "data-testid": 'asc-controller', onClick: function () { return handleChangeSort({ index: index, filter: exports.TablDataFilterSortType.asc }); }, icon: freeSolidSvgIcons.faCaretUp, fontSize: '10px' }) })), jsxRuntime.jsx("i", __assign({ className: "".concat((arraySortSelected === null || arraySortSelected === void 0 ? void 0 : arraySortSelected.index) === index && arraySortSelected.filter === exports.TablDataFilterSortType.desc ? 'active' : '') }, { children: jsxRuntime.jsx(reactFontawesome.FontAwesomeIcon, { "data-testid": 'desc-controller', onClick: function () { return handleChangeSort({ index: index, filter: exports.TablDataFilterSortType.desc }); }, icon: freeSolidSvgIcons.faCaretDown, fontSize: '10px' }) }))] }))] })) }, item.entry)); }) }) })));
     };
     var generateTableBody = function () {
         var startEntries = (currentPage - 1) * entriesCount;
-        var endEntries = ((currentPage - 1) * entriesCount) + (entriesCount - 1);
+        var endEntries = ((currentPage - 1) * entriesCount) + entriesCount;
         var filterTabFilterWithEntriesCount = filterListObjectsData.slice(startEntries, endEntries);
         return (jsxRuntime.jsx("tbody", { children: filterListObjectsData.length > 0 ? (filterTabFilterWithEntriesCount.map(function (data, index) { return (generateLineEmployee(index, data)); })) : (jsxRuntime.jsx("tr", { children: jsxRuntime.jsx("td", __assign({ colSpan: Object.entries(listObjectsData[0]).length, className: "no-result" }, { children: translate.get('noResult') })) })) }));
     };
@@ -202,22 +204,22 @@ var TableData = function (_a) {
         var dataMapOrder = dataMapFromObject.map(function (_elmnt, index) {
             return dataMapFromObject.find(function (item) { return item[0] === listLegend[index].entry; });
         });
-        return (jsxRuntime.jsx("tr", __assign({ className: "".concat(key % 2 ? 'table-white' : 'table-color') }, { children: dataMapOrder.map(function (item, index) { return (jsxRuntime.jsx("td", { children: item[1] instanceof Date ? item[1].toLocaleDateString(lang, { year: 'numeric', month: '2-digit', day: '2-digit' }) : item[1] }, index)); }) }), key));
+        return (jsxRuntime.jsx("tr", __assign({ className: "".concat(key % 2 ? 'table-white' : 'table-color') }, { children: dataMapOrder.map(function (item, index) { return (jsxRuntime.jsx("td", __assign({ "data-testid": "data-".concat(index, "-line") }, { children: item[1] instanceof Date ? item[1].toLocaleDateString(lang, { year: 'numeric', month: '2-digit', day: '2-digit' }) : item[1] }), index)); }) }), key));
     };
     var generatePagination = function () {
         var pages = [];
         var _loop_1 = function (index) {
-            pages.push(jsxRuntime.jsx("li", __assign({ className: index === currentPage ? 'current' : '', onClick: function () { return setCurrentPage(index); } }, { children: index }), 'page-' + index));
+            pages.push(jsxRuntime.jsx("li", __assign({ "data-testid": 'select-page', className: index === currentPage ? 'current' : '', onClick: function () { return setCurrentPage(index); } }, { children: index }), 'page-' + index));
         };
         for (var index = 1; index <= nbrPages; index++) {
             _loop_1(index);
         }
-        return (jsxRuntime.jsxs(react.Fragment, { children: [jsxRuntime.jsx("div", __assign({ className: "table-data__pagination__controler ".concat(currentPage <= 1 ? ' disable' : ''), onClick: function () { return setCurrentPage(currentPage - 1); } }, { children: translate.get('previous') })), jsxRuntime.jsx("ul", __assign({ className: 'table-data__pagination__pages' }, { children: pages })), jsxRuntime.jsx("div", __assign({ className: "table-data__pagination__controler ".concat(currentPage >= nbrPages ? ' disable' : ''), onClick: function () { return setCurrentPage(currentPage + 1); } }, { children: translate.get('next') }))] }));
+        return (jsxRuntime.jsxs(react.Fragment, { children: [jsxRuntime.jsx("div", __assign({ "data-testid": 'previous', className: "table-data__pagination__controler ".concat(currentPage <= 1 ? ' disable' : ''), onClick: function () { return setCurrentPage(currentPage - 1); } }, { children: translate.get('previous') })), jsxRuntime.jsx("ul", __assign({ className: 'table-data__pagination__pages' }, { children: pages })), jsxRuntime.jsx("div", __assign({ "data-testid": 'next', className: "table-data__pagination__controler ".concat(currentPage >= nbrPages ? ' disable' : ''), onClick: function () { return setCurrentPage(currentPage + 1); } }, { children: translate.get('next') }))] }));
     };
-    return (jsxRuntime.jsx("div", __assign({ "data-testid": 'table-data', className: 'table-data', style: {
+    return (jsxRuntime.jsx("div", __assign({ "data-testid": 'table-data', className: "".concat(className, " table-data"), style: {
             '--primary-color': color,
             '--secondary-color': textColor !== null && textColor !== void 0 ? textColor : color
-        } }, { children: listObjectsData.length > 0 ? (jsxRuntime.jsxs("div", { children: [jsxRuntime.jsxs("div", __assign({ className: 'table-data__filter' }, { children: [jsxRuntime.jsx("div", __assign({ className: 'table-data__filter__count' }, { children: jsxRuntime.jsxs("label", { children: [translate.get('show'), jsxRuntime.jsxs("select", __assign({ value: entriesCount, onChange: handleChangeEntries, name: "show-entries" }, { children: [jsxRuntime.jsx("option", __assign({ value: defaultEntrieCountValue }, { children: defaultEntrieCountValue })), jsxRuntime.jsx("option", __assign({ value: defaultEntrieCountValue * 2.5 }, { children: defaultEntrieCountValue * 2.5 })), jsxRuntime.jsx("option", __assign({ value: defaultEntrieCountValue * 5 }, { children: defaultEntrieCountValue * 5 })), jsxRuntime.jsx("option", __assign({ value: defaultEntrieCountValue * 10 }, { children: defaultEntrieCountValue * 10 }))] })), translate.get('entries')] }) })), jsxRuntime.jsxs("div", __assign({ className: 'table-data__filter__search' }, { children: [jsxRuntime.jsx("label", { children: translate.get('search') }), jsxRuntime.jsx("input", { name: "search", ref: searchInput, onChange: handleChangeSearch })] }))] })), jsxRuntime.jsx("div", __assign({ className: 'table-data__container' }, { children: jsxRuntime.jsxs("table", __assign({ className: 'table-data__table' }, { children: [generateTableHeader(), generateTableBody()] })) })), jsxRuntime.jsxs("div", __assign({ className: 'table-data__infos' }, { children: [translate.get('showing') + ' '
+        } }, { children: listObjectsData.length > 0 ? (jsxRuntime.jsxs("div", { children: [jsxRuntime.jsxs("div", __assign({ className: 'table-data__filter' }, { children: [jsxRuntime.jsx("div", __assign({ className: 'table-data__filter__count' }, { children: jsxRuntime.jsxs("label", { children: [translate.get('show'), jsxRuntime.jsxs("select", __assign({ "data-testid": "select-entries", value: entriesCount, onChange: handleChangeEntries, name: "show-entries" }, { children: [jsxRuntime.jsx("option", __assign({ value: defaultEntrieCountValue }, { children: defaultEntrieCountValue })), jsxRuntime.jsx("option", __assign({ value: defaultEntrieCountValue * 2.5 }, { children: defaultEntrieCountValue * 2.5 })), jsxRuntime.jsx("option", __assign({ value: defaultEntrieCountValue * 5 }, { children: defaultEntrieCountValue * 5 })), jsxRuntime.jsx("option", __assign({ "data-testid": "select-option", value: defaultEntrieCountValue * 10 }, { children: defaultEntrieCountValue * 10 }))] })), translate.get('entries')] }) })), jsxRuntime.jsxs("div", __assign({ className: 'table-data__filter__search' }, { children: [jsxRuntime.jsx("label", { children: translate.get('search') }), jsxRuntime.jsx("input", { "data-testid": "search", name: "search", ref: searchInput, onChange: handleChangeSearch })] }))] })), jsxRuntime.jsx("div", __assign({ className: 'table-data__container' }, { children: jsxRuntime.jsxs("table", __assign({ className: 'table-data__table' }, { children: [generateTableHeader(), generateTableBody()] })) })), jsxRuntime.jsxs("div", __assign({ className: 'table-data__infos' }, { children: [translate.get('showing') + ' '
                             + ((currentPage - 1) * entriesCount + 1)
                             + ' ' + translate.get('to') + ' ' + (((currentPage - 1) * entriesCount) + entriesCount)
                             + ' ' + translate.get('of') + ' ' + filterListObjectsData.length
