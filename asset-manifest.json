@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.css": "/lib_typescript-adveanced-table-react/static/css/main.445c0d41.css",
-    "main.js": "/lib_typescript-adveanced-table-react/static/js/main.8f5c413f.js",
-    "index.html": "/lib_typescript-adveanced-table-react/index.html",
-    "main.445c0d41.css.map": "/lib_typescript-adveanced-table-react/static/css/main.445c0d41.css.map",
-    "main.8f5c413f.js.map": "/lib_typescript-adveanced-table-react/static/js/main.8f5c413f.js.map"
+    "main.css": "/lib_typescript-advanced-table-react/static/css/main.445c0d41.css",
+    "main.js": "/lib_typescript-advanced-table-react/static/js/main.8f5c413f.js",
+    "index.html": "/lib_typescript-advanced-table-react/index.html",
+    "main.445c0d41.css.map": "/lib_typescript-advanced-table-react/static/css/main.445c0d41.css.map",
+    "main.8f5c413f.js.map": "/lib_typescript-advanced-table-react/static/js/main.8f5c413f.js.map"
   },
   "entrypoints": [
     "static/css/main.445c0d41.css",
