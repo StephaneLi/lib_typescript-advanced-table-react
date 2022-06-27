@@ -2,6 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import TableData from './lib'
 import { listLegend, listObject } from './listObjectTest'
+import './style.css'
 
 
 const root = ReactDOM.createRoot(
@@ -10,6 +11,8 @@ const root = ReactDOM.createRoot(
 
 root.render(
   <React.StrictMode>
-    <TableData listObjectsData={listObject} listLegend={listLegend}/>
+    <div className='demo'>
+      <TableData listObjectsData={listObject} listLegend={listLegend}/>
+    </div>
   </React.StrictMode>
 )

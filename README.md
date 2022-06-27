@@ -6,7 +6,8 @@
 An advanced table data in typescript.  
 From project 14 OpenClassrooms, react app developer  
   
-[Projet 14 Openclassroms](https://github.com/StephaneLi/StephaneLieumont_14_03062022)
+[Projet 14 Openclassroms](https://github.com/StephaneLi/StephaneLieumont_14_03062022)  
+[Demo](https://stephaneli.github.io/lib_typescript-adveanced-table-react/)
 
 ## Installation
 ```npm install @stephane1920/ts-advanced-table-react```  
