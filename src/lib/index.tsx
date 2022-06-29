@@ -291,8 +291,8 @@ const TableData: FunctionComponent<TableDataProps> = ({listObjectsData, listLege
                 </label>
               </div>
               <div className='table-data__filter__search'>
-                <label>{translate.get('search')}</label>
-                <input data-testid="search" name="search" ref={searchInput} onChange={handleChangeSearch} />
+                <label htmlFor='search' >{translate.get('search')}</label>
+                <input id="search" data-testid="search" name="search" ref={searchInput} onChange={handleChangeSearch} />
               </div>
             </div>
             <div className='table-data__container'>

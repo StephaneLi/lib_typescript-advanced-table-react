@@ -8,20 +8,24 @@
     "allowJs": false,
     "jsx": "react-jsx",
     "declaration": true,
+    "declarationDir": "dist",
     "moduleResolution": "node",
     "forceConsistentCasingInFileNames": true,
     "noImplicitReturns": true,
     "noImplicitThis": true,
     "noImplicitAny": true,
     "strictNullChecks": true,
+    "esModuleInterop": true,
     "suppressImplicitAnyIndexErrors": true,
     "allowSyntheticDefaultImports": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
   },
-  "files": [
-    "src/lib/index.tsx"
+  "include": [
+    "src/lib/*"
   ],
-  "include": ["src/lib/custom.d.ts"],
-  "exclude": ["node_modules"]
+  "exclude": [
+    "node_modules",
+    "src/lib/*test.tsx"
+  ]
 }

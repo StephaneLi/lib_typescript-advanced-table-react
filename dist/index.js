@@ -1,11 +1,11 @@
 Object.defineProperty(exports, '__esModule', { value: true });
+require('./style.css');
 
 var jsxRuntime = require('react/jsx-runtime');
 var freeSolidSvgIcons = require('@fortawesome/free-solid-svg-icons');
 var reactFontawesome = require('@fortawesome/react-fontawesome');
 var react = require('react');
 
-require('./style.css')
 /******************************************************************************
 Copyright (c) Microsoft Corporation.
 

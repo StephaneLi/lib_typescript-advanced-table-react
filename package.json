@@ -1,13 +1,14 @@
 {
   "name": "@stephane1920/ts-advanced-table-react",
   "main": "dist/index.js",
+  "module": "dist/index.js",
   "homepage": "https://stephaneli.github.io/lib_typescript-advanced-table-react/",
   "files": [
     "dist",
     "README.md"
   ],
   "keywords": [
-    "datepicker",
+    "table-data",
     "react",
     "typescript",
     "openclassrooms"
@@ -22,7 +23,7 @@
     "type": "git",
     "url": "git+https://github.com/StephaneLi/lib_typescript-advanced-table-react.git"
   },
-  "version": "1.0.3",
+  "version": "1.0.5",
   "scripts": {
     "start": "react-scripts start",
     "clean": "rm -rf dist",
