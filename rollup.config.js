@@ -17,8 +17,17 @@ export default {
     }
   ],
   plugins: [
-    sass({ insert: true }),
-    typescript({ objectHashIgnoreUnknownHack: true }),
+    sass({
+      output: "./dist/style.css",
+      failOnError: true,
+      runtime: require("sass"),
+    }),
+    typescript({
+      verbosity: 2,
+      clean: true,
+      useTsconfigDeclarationDir: true,
+      tsconfig: './tsconfig.json',
+    }),
     json()
   ],
   external: ['react', 'react-dom']

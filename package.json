@@ -22,7 +22,7 @@
     "type": "git",
     "url": "git+https://github.com/StephaneLi/lib_typescript-advanced-table-react.git"
   },
-  "version": "1.0.2",
+  "version": "1.0.3",
   "scripts": {
     "start": "react-scripts start",
     "clean": "rm -rf dist",

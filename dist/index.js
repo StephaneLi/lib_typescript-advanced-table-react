@@ -1,16 +1,3 @@
-
-
-function ___$insertStyle(css) {
-    if (!css || typeof window === 'undefined') {
-        return;
-    }
-    const style = document.createElement('style');
-    style.setAttribute('type', 'text/css');
-    style.innerHTML = css;
-    document.head.appendChild(style);
-    return css;
-}
-
 Object.defineProperty(exports, '__esModule', { value: true });
 
 var jsxRuntime = require('react/jsx-runtime');
@@ -18,6 +5,7 @@ var freeSolidSvgIcons = require('@fortawesome/free-solid-svg-icons');
 var reactFontawesome = require('@fortawesome/react-fontawesome');
 var react = require('react');
 
+require('./style.css')
 /******************************************************************************
 Copyright (c) Microsoft Corporation.
 
@@ -79,8 +67,6 @@ var i18n = {
 var jsonTranslate = {
 	i18n: i18n
 };
-
-___$insertStyle(".table-data {\n  font-size: 0.7rem;\n  color: var(--secondary-color) !important;\n  width: 100%;\n  font-family: Arial, Helvetica, sans-serif;\n}\n.table-data input, .table-data select {\n  border: 1px solid rgba(128, 128, 128, 0.3);\n  border-radius: 5px;\n  color: var(--secondary-color);\n  padding: 3px 5px;\n}\n.table-data input:focus, .table-data select:focus {\n  outline-color: var(--primary-color);\n}\n.table-data__empty {\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n  gap: 30px;\n  align-items: center;\n  width: 100%;\n  margin-top: 50px;\n}\n.table-data__empty i {\n  opacity: 0.5;\n}\n.table-data__container {\n  overflow: auto;\n  max-height: 490px;\n  max-width: 100%;\n  width: 100%;\n}\n.table-data__filter {\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n  padding-left: 20px;\n  padding-right: 20px;\n  margin-bottom: 15px;\n  font-weight: bold;\n}\n.table-data__filter__count label, .table-data__filter__search {\n  display: flex;\n  align-items: center;\n  gap: 5px;\n}\n.table-data__table {\n  margin-bottom: 0;\n  max-width: none;\n  width: 100%;\n}\n.table-data__table__header {\n  font-size: 0.82rem;\n  line-height: 2rem;\n  font-weight: bold;\n  position: sticky;\n  top: 0;\n  background-color: white !important;\n  z-index: 3;\n}\n.table-data__table__header__legend {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  gap: 10px;\n  color: var(--primary-color) !important;\n  cursor: pointer;\n}\n.table-data__table__header__legend__controls {\n  display: flex;\n  flex-direction: column;\n}\n.table-data__table__header__legend__controls i {\n  line-height: 5px;\n  opacity: 0.3;\n  cursor: pointer;\n  transition: opacity 0.15s ease-in-out;\n}\n.table-data__table__header__legend__controls i:hover {\n  opacity: 1;\n}\n.table-data__table__header__legend__controls i.active {\n  color: var(--primary-color);\n  opacity: 1;\n}\n.table-data__table__header td {\n  white-space: nowrap;\n}\n.table-data__table td {\n  padding: 5px 10px;\n  text-align: center;\n  vertical-align: middle;\n}\n.table-data__table td.no-result {\n  font-size: 1rem;\n  font-weight: bold;\n}\n.table-data__table .table-white {\n  background-color: white;\n}\n.table-data__table .table-color {\n  position: relative;\n  background-color: white;\n}\n.table-data__table .table-color::after {\n  position: absolute;\n  top: 0;\n  left: 0;\n  content: \"\";\n  width: 100%;\n  height: 100%;\n  background-color: var(--primary-color) !important;\n  opacity: 0.12;\n  z-index: 1;\n}\n.table-data__infos {\n  margin-top: 10px;\n}\n.table-data__pagination {\n  padding: 20px;\n  padding-bottom: 0;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  gap: 10px;\n  font-weight: bold;\n  min-height: 40px;\n}\n.table-data__pagination__controler {\n  cursor: pointer;\n  display: block;\n  user-select: none;\n}\n.table-data__pagination__controler.disable {\n  pointer-events: none;\n  opacity: 0.3;\n}\n.table-data__pagination__pages {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  gap: 5px;\n  margin: 0;\n  padding: 0;\n}\n.table-data__pagination__pages li {\n  box-sizing: border-box;\n  position: relative;\n  display: block;\n  height: 20px;\n  width: 20px;\n  text-align: center;\n  line-height: 18px;\n  font-size: 12px;\n  border: 1px solid;\n  border-radius: 50%;\n  cursor: pointer;\n  user-select: none;\n  transition: all 0.15s ease-in-out;\n}\n.table-data__pagination__pages li:hover {\n  color: var(--primary-color);\n  border-color: var(--primary-color);\n}\n.table-data__pagination__pages li.current {\n  pointer-events: none;\n  border-color: var(--primary-color);\n  background-color: var(--primary-color);\n  color: white;\n}");
 
 exports.TablDataFilterSortType = void 0;
 (function (TablDataFilterSortType) {
